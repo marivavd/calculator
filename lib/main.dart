@@ -65,30 +65,37 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(title: Text('Calculator', style: TextStyle(fontSize: 60, color: Colors.redAccent)),
       centerTitle: true,),
       backgroundColor: Colors.blueGrey,
-      body: Column(
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [Container(padding: EdgeInsets.only(top:30), alignment: Alignment.topCenter,
-          child: Text('2 + 2 = 4', style: TextStyle(fontSize: 40))),
-          Container(padding: EdgeInsets.fromLTRB(10, 80, 10, 30),
-            child: Row(children: [SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('1', style: TextStyle(fontSize: 24)),),),
-              SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('2', style: TextStyle(fontSize: 24)),),),
-              SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('3', style: TextStyle(fontSize: 24)),),),
-              SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('+', style: TextStyle(fontSize: 24)),),), ],)),
-          Container(padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
-              child: Row(children: [SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('4', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('5', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('6', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('-', style: TextStyle(fontSize: 24)),),), ],)),
-          Container(padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
-              child: Row(children: [SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('7', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('8', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('9', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('/', style: TextStyle(fontSize: 24)),),), ],)),
-          Container(padding: EdgeInsets.fromLTRB(10, 10, 10, 30),
-              child: Row(children: [SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('0', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('C', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('=', style: TextStyle(fontSize: 24)),),),
-                SizedBox(width: 90, height: 80, child: ElevatedButton(onPressed: () {}, child: Text('*', style: TextStyle(fontSize: 24)),),), ],))]
+        children: [Expanded(child: Container(alignment: Alignment.topCenter,
+          child: Text('2 + 2 = 4', style: TextStyle(fontSize: 40)))),
+          Expanded(child: Container(
+            child: Row(children: [Expanded(child:SizedBox(height: 80, child: ElevatedButton(onPressed: () {}, child: Text('1', style: TextStyle(fontSize: 24)),),)),
+              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('2', style: TextStyle(fontSize: 24)),),)),
+              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('3', style: TextStyle(fontSize: 24)),),)),
+              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('+', style: TextStyle(fontSize: 24)),),)), ],))),
+          Expanded(
+          child:Container(
+              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('4', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('5', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('6', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('-', style: TextStyle(fontSize: 24)),),)), ],))),
+          Expanded(
+          child: Container(
+              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('7', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('8', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('9', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('*', style: TextStyle(fontSize: 24)),),)), ],))),
+          Expanded(
+          child: Container(
+              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('0', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('C', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('=', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('/', style: TextStyle(fontSize: 24)),),)), ],)))]
+      ),
       ),
     );
   }
