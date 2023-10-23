@@ -40,17 +40,67 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  String text = "";
+  String first_number = "";
+  String second_number = "";
+  String operation = "";
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  void form_text(){
+    text = first_number + operation + second_number;
+  }
+  void write_numbers(String number){
+    if (operation == ""){
+      first_number += number;}
+    else{
+      second_number += number;}
+    form_text();
+  }
+  void write_operation(String my_operation){
+    operation = my_operation;
+    form_text();
+  }
+  void del_operation(){
+    if (operation == ""){
+      if (first_number != ""){
+        first_number = first_number.substring(0, first_number.length - 1);
+      }
+    }
+    else if (second_number == ""){
+      operation = "";
+    }
+    else{
+      second_number = second_number.substring(0, second_number.length - 1);
+    }
+    form_text();
+  }
+  void calculation(){
+    if (first_number != "" && second_number != "" && operation != ""){
+      double result = 0;
+      double first = double.parse(first_number);
+      double second = double.parse(second_number);
+      if (operation == "+"){
+        result = first + second;
+      }
+      else if (operation == '-'){
+        result = first - second;
+      }
+      else if (operation == '*'){
+        result = first * second;
+      }
+      else if (second != 0){
+        if (operation == '/'){
+          result = first / second;
+        }
+        else{
+          result = first % second;
+        }
+      }
+      if (second_number != "0"){
+        first_number = result.toString();
+        second_number = "";
+        operation = "";
+        form_text();}
+    }
   }
 
   @override
@@ -71,30 +121,35 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [Expanded(child: Container(alignment: Alignment.topCenter,
-          child: Text('2 + 2 = 4', style: TextStyle(fontSize: 40)))),
+          child: Text(text, style: TextStyle(fontSize: 70, color: Colors.redAccent)))),
           Expanded(child: Container(
-            child: Row(children: [Expanded(child:SizedBox(height: 80, child: ElevatedButton(onPressed: () {}, child: Text('1', style: TextStyle(fontSize: 24)),),)),
-              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('2', style: TextStyle(fontSize: 24)),),)),
-              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('3', style: TextStyle(fontSize: 24)),),)),
-              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('+', style: TextStyle(fontSize: 24)),),)), ],))),
+            child: Row(children: [Expanded(child:SizedBox(height: 80, child: ElevatedButton(onPressed: () {setState(() {write_numbers("1");});}, child: Text('1', style: TextStyle(fontSize: 24)),),)),
+              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("2");});}, child: Text('2', style: TextStyle(fontSize: 24)),),)),
+              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("3");});}, child: Text('3', style: TextStyle(fontSize: 24)),),)),
+              Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_operation("+");});}, child: Text('+', style: TextStyle(fontSize: 24)),),)), ],))),
           Expanded(
           child:Container(
-              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('4', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('5', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('6', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('-', style: TextStyle(fontSize: 24)),),)), ],))),
+              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("4");});}, child: Text('4', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("5");});}, child: Text('5', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("6");});}, child: Text('6', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_operation("-");});}, child: Text('-', style: TextStyle(fontSize: 24)),),)), ],))),
           Expanded(
           child: Container(
-              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('7', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('8', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('9', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('*', style: TextStyle(fontSize: 24)),),)), ],))),
+              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("7");});}, child: Text('7', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("8");});}, child: Text('8', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("9");});}, child: Text('9', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState((){write_operation("*");});}, child: Text('*', style: TextStyle(fontSize: 24)),),)), ],))),
+          Expanded(
+              child: Container(
+                  child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {write_numbers("0");});}, child: Text('0', style: TextStyle(fontSize: 24)),),)),
+                    Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState((){write_operation("%");});}, child: Text('%', style: TextStyle(fontSize: 24)),),)),
+                    Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState(() {calculation();});}, child: Text('=', style: TextStyle(fontSize: 24)),),)),
+                    Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState((){write_operation("/");});}, child: Text('/', style: TextStyle(fontSize: 24)),),)), ],))),
           Expanded(
           child: Container(
-              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('0', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('C', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('=', style: TextStyle(fontSize: 24)),),)),
-                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {}, child: Text('/', style: TextStyle(fontSize: 24)),),)), ],)))]
+              child: Row(children: [Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState((){del_operation();});}, child: Text('del', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {setState((){text = "";first_number = "";second_number = "";operation = "";});}, child: Text('C', style: TextStyle(fontSize: 24)),),)),
+                Expanded(child:SizedBox(height: 80,child: ElevatedButton(onPressed: () {write_numbers(".");}, child: Text('.', style: TextStyle(fontSize: 24)),),)),],)))]
       ),
       ),
     );
